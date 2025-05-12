@@ -32,7 +32,7 @@ function Computer(props: ComputerProps) {
       <mesh position={props.position} ref={group as any} scale={scale}>
         <boxGeometry args={[1, 0.5, 1]} />
         <meshStandardMaterial 
-          color={props.theme === "dark" ? "#3b82f6" : "#1d4ed8"} 
+          color={props.theme === "dark" ? "#ff8c3f" : "#ff6b00"} 
           metalness={0.8} 
           roughness={0.2} 
         />
@@ -130,19 +130,19 @@ function SceneContent({ theme }: SceneContentProps) {
           
           <FloatingCube 
             position={[-1.5, 0.2, 0]} 
-            color={theme === "dark" ? "#4ade80" : "#16a34a"} 
+            color={theme === "dark" ? "#ff8c3f" : "#ff6b00"} 
             speed={0.8} 
             size={[0.4, 0.4, 0.4]}
           />
           <FloatingCube 
             position={[1.5, 0.2, 0]} 
-            color={theme === "dark" ? "#f472b6" : "#be185d"} 
+            color={theme === "dark" ? "#ff6b00" : "#e55c00"} 
             speed={1.2} 
             size={[0.3, 0.3, 0.3]}
           />
           <FloatingCube 
             position={[0, 1, -0.5]} 
-            color={theme === "dark" ? "#fcd34d" : "#d97706"} 
+            color={theme === "dark" ? "#ffac7f" : "#ff8c3f"} 
             speed={1} 
             size={[0.25, 0.25, 0.25]}
           />
