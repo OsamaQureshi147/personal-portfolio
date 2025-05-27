@@ -1,39 +1,5 @@
 {
-  "node": {
-    "7f0202ad5fb6352dce120163e990682580569c37ac": {
-      "workers": {
-        "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2F%40sanity%2Fnext-loader%2Fdist%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227f0202ad5fb6352dce120163e990682580569c37ac%22%2C%22exportedName%22%3A%22revalidateSyncTags%22%7D%2C%7B%22id%22%3A%227fc2cd89c7c5bf26b0bb3f608f7665865b7dd51a71%22%2C%22exportedName%22%3A%22setPerspectiveCookie%22%7D%5D%5D%2C%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2Fnext-sanity%2Fdist%2Fvisual-editing%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227ff88b65f96513238f39c6fd2e3989dad8bf1235fa%22%2C%22exportedName%22%3A%22revalidateRootLayout%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
-    "7fc2cd89c7c5bf26b0bb3f608f7665865b7dd51a71": {
-      "workers": {
-        "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2F%40sanity%2Fnext-loader%2Fdist%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227f0202ad5fb6352dce120163e990682580569c37ac%22%2C%22exportedName%22%3A%22revalidateSyncTags%22%7D%2C%7B%22id%22%3A%227fc2cd89c7c5bf26b0bb3f608f7665865b7dd51a71%22%2C%22exportedName%22%3A%22setPerspectiveCookie%22%7D%5D%5D%2C%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2Fnext-sanity%2Fdist%2Fvisual-editing%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227ff88b65f96513238f39c6fd2e3989dad8bf1235fa%22%2C%22exportedName%22%3A%22revalidateRootLayout%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
-    "7ff88b65f96513238f39c6fd2e3989dad8bf1235fa": {
-      "workers": {
-        "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2F%40sanity%2Fnext-loader%2Fdist%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227f0202ad5fb6352dce120163e990682580569c37ac%22%2C%22exportedName%22%3A%22revalidateSyncTags%22%7D%2C%7B%22id%22%3A%227fc2cd89c7c5bf26b0bb3f608f7665865b7dd51a71%22%2C%22exportedName%22%3A%22setPerspectiveCookie%22%7D%5D%5D%2C%5B%22%2Fhome%2Frunner%2Fworkspace%2Fnode_modules%2Fnext-sanity%2Fdist%2Fvisual-editing%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227ff88b65f96513238f39c6fd2e3989dad8bf1235fa%22%2C%22exportedName%22%3A%22revalidateRootLayout%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "jeZjKP7+/WOQPPfPb5bmGZNWxsz8V4VeZTuvvn0j29o="
+  "encryptionKey": "qmOyuxuK7fHnej08kq/ioDQB2lUJDpo3uRi5nQtKO6s="
 }
