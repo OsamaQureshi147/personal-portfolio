@@ -55,7 +55,7 @@ function TechIcon({ position, tech, index }) {
   return (
     <group ref={meshRef} position={position}>
       {/* Background circle */}
-      <Plane args={[0.25, 0.25]}>
+      <Plane args={[0.4, 0.4]}>
         <meshBasicMaterial 
           color={tech.bgColor} 
           transparent 
@@ -65,7 +65,7 @@ function TechIcon({ position, tech, index }) {
       </Plane>
       
       {/* Icon circle with border */}
-      <Plane args={[0.22, 0.22]} position={[0, 0, 0.001]}>
+      <Plane args={[0.35, 0.35]} position={[0, 0, 0.001]}>
         <meshBasicMaterial 
           color={tech.color} 
           transparent 
@@ -75,7 +75,7 @@ function TechIcon({ position, tech, index }) {
       </Plane>
       
       {/* Technology symbol/text */}
-      <Plane args={[0.15, 0.15]} position={[0, 0, 0.002]}>
+      <Plane args={[0.25, 0.25]} position={[0, 0, 0.002]}>
         <meshBasicMaterial 
           color={tech.name === "JS" || tech.name === "▲" ? "#FFFFFF" : tech.bgColor}
           transparent 
@@ -96,7 +96,7 @@ export default function CodeSphere() {
   const techPositions = useMemo(() => {
     return technologies.map((_, idx) => {
       const total = technologies.length;
-      const radius = 1.6; // Optimal radius for visibility
+      const radius = 2.5; // Much larger radius for better visibility
       
       // Fibonacci sphere distribution for even spacing
       const y = 1 - (idx / (total - 1)) * 2;
@@ -124,12 +124,12 @@ export default function CodeSphere() {
   return (
     <group ref={groupRef}>
       {/* Main wireframe sphere */}
-      <Sphere args={[1.4, 20, 20]} position={[0, 0, 0]}>
+      <Sphere args={[2.2, 20, 20]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff6b00"
           wireframe 
           transparent 
-          opacity={0.2} 
+          opacity={0.25} 
         />
       </Sphere>
       
@@ -144,21 +144,21 @@ export default function CodeSphere() {
       ))}
       
       {/* Inner glow effect */}
-      <Sphere args={[1.2, 16, 16]} position={[0, 0, 0]}>
+      <Sphere args={[1.8, 16, 16]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff6b00"
           transparent 
-          opacity={0.03} 
+          opacity={0.05} 
         />
       </Sphere>
       
       {/* Outer particles effect */}
-      <Sphere args={[1.8, 12, 12]} position={[0, 0, 0]}>
+      <Sphere args={[2.8, 12, 12]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff8c3f"
           wireframe 
           transparent 
-          opacity={0.1} 
+          opacity={0.12} 
         />
       </Sphere>
     </group>
