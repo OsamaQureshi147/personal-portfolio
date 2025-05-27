@@ -1,105 +1,105 @@
 "use client";
 
 import React, { useRef, useMemo } from "react";
-import { useFrame } from "@react-three/fiber";
-import { Sphere, Plane } from "@react-three/drei";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { Sphere, Circle, Text } from "@react-three/drei";
 import { useTheme } from "next-themes";
 import * as THREE from "three";
 
-// Technology icons with their colors
+// Technology data with proper branding
 const technologies = [
-  { name: "JS", color: "#F7DF1E", bgColor: "#000000" },
-  { name: "TS", color: "#3178C6", bgColor: "#FFFFFF" },
-  { name: "⚛", color: "#61DAFB", bgColor: "#20232A" }, // React
-  { name: "▲", color: "#000000", bgColor: "#FFFFFF" }, // Next.js
-  { name: "📗", color: "#339933", bgColor: "#FFFFFF" }, // Node.js
-  { name: "🐱", color: "#E0234E", bgColor: "#FFFFFF" }, // NestJS cat
-  { name: "🐘", color: "#336791", bgColor: "#FFFFFF" }, // PostgreSQL
-  { name: "🍃", color: "#47A248", bgColor: "#FFFFFF" }, // MongoDB
-  { name: "🎨", color: "#06B6D4", bgColor: "#FFFFFF" }, // Tailwind
-  { name: "📊", color: "#E10098", bgColor: "#FFFFFF" }, // GraphQL
-  { name: "🔄", color: "#764ABC", bgColor: "#FFFFFF" }, // Redux
-  { name: "🐍", color: "#3776AB", bgColor: "#FFD43B" }, // Python
-  { name: "🐹", color: "#00ADD8", bgColor: "#FFFFFF" }, // Go
-  { name: "💎", color: "#DC382D", bgColor: "#FFFFFF" }, // Redis
-  { name: "⚡", color: "#231F20", bgColor: "#FFFFFF" }, // Kafka
-  { name: "🐳", color: "#2496ED", bgColor: "#FFFFFF" }, // Docker
+  { name: "JS", symbol: "JS", color: "#F7DF1E", textColor: "#000000" },
+  { name: "TS", symbol: "TS", color: "#3178C6", textColor: "#FFFFFF" },
+  { name: "React", symbol: "⚛", color: "#61DAFB", textColor: "#000000" },
+  { name: "Next", symbol: "▲", color: "#000000", textColor: "#FFFFFF" },
+  { name: "Node", symbol: "N", color: "#339933", textColor: "#FFFFFF" },
+  { name: "Nest", symbol: "🐱", color: "#E0234E", textColor: "#FFFFFF" },
+  { name: "PostgreSQL", symbol: "🐘", color: "#336791", textColor: "#FFFFFF" },
+  { name: "MongoDB", symbol: "🍃", color: "#47A248", textColor: "#FFFFFF" },
+  { name: "Tailwind", symbol: "🎨", color: "#06B6D4", textColor: "#FFFFFF" },
+  { name: "GraphQL", symbol: "QL", color: "#E10098", textColor: "#FFFFFF" },
+  { name: "Redux", symbol: "RX", color: "#764ABC", textColor: "#FFFFFF" },
+  { name: "Python", symbol: "🐍", color: "#3776AB", textColor: "#FFD43B" },
+  { name: "Go", symbol: "GO", color: "#00ADD8", textColor: "#FFFFFF" },
+  { name: "Redis", symbol: "💎", color: "#DC382D", textColor: "#FFFFFF" },
+  { name: "Docker", symbol: "🐳", color: "#2496ED", textColor: "#FFFFFF" },
+  { name: "Kafka", symbol: "K", color: "#231F20", textColor: "#FFFFFF" },
 ];
 
-// Simple 3D icon component
-function TechIcon({ position, tech, index }) {
-  const meshRef = useRef();
-  const { resolvedTheme } = useTheme();
+// Tech icon component with proper 3D circles
+function TechIcon({ position, tech, index }: { position: [number, number, number], tech: any, index: number }) {
+  const groupRef = useRef<THREE.Group>(null);
   
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
+  useFrame(({ clock, camera }) => {
+    if (groupRef.current) {
       const time = clock.getElapsedTime();
       
-      // Individual rotation for each icon
-      meshRef.current.rotation.z = Math.sin(time * 0.5 + index) * 0.2;
+      // Individual gentle rotation
+      groupRef.current.rotation.z = Math.sin(time * 0.3 + index) * 0.1;
       
-      // Subtle floating
-      const originalPos = position;
-      const floatOffset = Math.sin(time * 0.4 + index * 0.8) * 0.03;
-      meshRef.current.position.set(
-        originalPos[0],
-        originalPos[1] + floatOffset,
-        originalPos[2]
+      // Subtle floating animation
+      const floatOffset = Math.sin(time * 0.4 + index * 0.8) * 0.05;
+      groupRef.current.position.set(
+        position[0],
+        position[1] + floatOffset,
+        position[2]
       );
       
-      // Always face camera
-      meshRef.current.lookAt(0, 0, 0);
+      // Face the camera
+      groupRef.current.lookAt(camera.position);
     }
   });
 
   return (
-    <group ref={meshRef} position={position}>
+    <group ref={groupRef} position={position}>
       {/* Background circle */}
-      <Plane args={[0.4, 0.4]}>
+      <Circle args={[0.22]} position={[0, 0, -0.01]}>
         <meshBasicMaterial 
-          color={tech.bgColor} 
+          color="#FFFFFF" 
           transparent 
           opacity={0.9}
           side={THREE.DoubleSide}
         />
-      </Plane>
+      </Circle>
       
-      {/* Icon circle with border */}
-      <Plane args={[0.35, 0.35]} position={[0, 0, 0.001]}>
+      {/* Technology color circle */}
+      <Circle args={[0.18]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color={tech.color} 
           transparent 
           opacity={1}
           side={THREE.DoubleSide}
         />
-      </Plane>
+      </Circle>
       
-      {/* Technology symbol/text */}
-      <Plane args={[0.25, 0.25]} position={[0, 0, 0.002]}>
-        <meshBasicMaterial 
-          color={tech.name === "JS" || tech.name === "▲" ? "#FFFFFF" : tech.bgColor}
-          transparent 
-          opacity={1}
-          side={THREE.DoubleSide}
-        />
-      </Plane>
+      {/* Technology symbol */}
+      <Text
+        position={[0, 0, 0.01]}
+        fontSize={0.12}
+        color={tech.textColor}
+        anchorX="center"
+        anchorY="middle"
+        maxWidth={0.3}
+      >
+        {tech.symbol}
+      </Text>
     </group>
   );
 }
 
 export default function CodeSphere() {
   const { resolvedTheme } = useTheme();
-  const groupRef = useRef();
+  const groupRef = useRef<THREE.Group>(null);
   const isDarkTheme = resolvedTheme === "dark";
   
   // Generate stable positions for each technology
   const techPositions = useMemo(() => {
     return technologies.map((_, idx) => {
       const total = technologies.length;
-      const radius = 2.5; // Much larger radius for better visibility
+      const radius = 2.5; // Optimal radius for visibility
       
       // Fibonacci sphere distribution for even spacing
-      const y = 1 - (idx / (total - 1)) * 2;
+      const y = 1 - (idx / (total - 1)) * 2; // y from 1 to -1
       const radiusAtY = Math.sqrt(1 - y * y);
       const theta = (idx * 2.399963) % (2 * Math.PI); // Golden angle
       
@@ -107,7 +107,7 @@ export default function CodeSphere() {
         radius * radiusAtY * Math.cos(theta),
         radius * y,
         radius * radiusAtY * Math.sin(theta)
-      ];
+      ] as [number, number, number];
     });
   }, []);
 
@@ -116,20 +116,20 @@ export default function CodeSphere() {
     
     // Gentle rotation of the entire sphere
     if (groupRef.current) {
-      groupRef.current.rotation.y = time * 0.1;
-      groupRef.current.rotation.x = Math.sin(time * 0.05) * 0.1;
+      groupRef.current.rotation.y = time * 0.08;
+      groupRef.current.rotation.x = Math.sin(time * 0.03) * 0.05;
     }
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[0, 0, 0]}>
       {/* Main wireframe sphere */}
-      <Sphere args={[2.2, 20, 20]} position={[0, 0, 0]}>
+      <Sphere args={[2.2, 24, 24]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff6b00"
           wireframe 
           transparent 
-          opacity={0.25} 
+          opacity={0.3} 
         />
       </Sphere>
       
@@ -144,21 +144,21 @@ export default function CodeSphere() {
       ))}
       
       {/* Inner glow effect */}
-      <Sphere args={[1.8, 16, 16]} position={[0, 0, 0]}>
+      <Sphere args={[1.9, 20, 20]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff6b00"
           transparent 
-          opacity={0.05} 
+          opacity={0.08} 
         />
       </Sphere>
       
-      {/* Outer particles effect */}
-      <Sphere args={[2.8, 12, 12]} position={[0, 0, 0]}>
+      {/* Outer boundary sphere */}
+      <Sphere args={[2.8, 16, 16]} position={[0, 0, 0]}>
         <meshBasicMaterial 
           color="#ff8c3f"
           wireframe 
           transparent 
-          opacity={0.12} 
+          opacity={0.15} 
         />
       </Sphere>
     </group>
