@@ -1,6 +1,6 @@
 # Developer Portfolio
 
-A modern, responsive developer portfolio website built with Next.js 15, featuring an interactive 3D technology sphere, Sanity CMS integration, and elegant animations.
+A modern, responsive developer portfolio website built with Next.js 15, featuring an interactive 3D technology sphere, Sanity CMS integration, and elegant animations
 
 ## ✨ Features
 
