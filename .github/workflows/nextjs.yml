@@ -28,9 +28,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4 # Use the latest version, e.g., v4
         with:
-          version: 8 # Choose your required pnpm version
+          version: 8 # Or your preferred pnpm version
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -53,18 +53,13 @@ jobs:
       - name: Build with Next.js
         run: pnpm next build
 
-      - name: Export static files (if using next export)
-        run: pnpm next export
-        # Remove this step if you are not using next export or if your app is not static
-
       - name: Start server
         run: pnpm run start
-        # This serves the build for verification; comment/remove if not required in workflow
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out # If using next export. If not, change to `.next` or the correct output dir.
+          path: ./out
 
   deploy:
     environment:
