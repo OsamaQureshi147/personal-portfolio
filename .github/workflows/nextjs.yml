@@ -31,6 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Node.js with Corepack
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.15.1' # or '20', 'lts', etc.
+          cache: 'pnpm'
+
+      - name: Enable Corepack & Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
       - name: Detect package manager
         id: detect-package-manager
         run: |
