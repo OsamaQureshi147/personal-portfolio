@@ -91,9 +91,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install dependencies
-        run: | 
-          pnpm install
-          echo
+        run: pnpm install
       - name: Build Next.js app
         run: pnpm run build
 
